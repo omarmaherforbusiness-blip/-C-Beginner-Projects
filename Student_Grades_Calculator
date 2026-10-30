@@ -1,0 +1,55 @@
+
+#include <stdio.h>
+
+int main() {
+
+    float numbers[5];
+    char name[50];
+    float max;
+    int i, answer;
+    float sum = 0;
+
+    printf("\nWhat's student name?\n");
+    scanf("%49s", name);
+
+    printf("\nHello %s! Are you ready? To start enter (1), to end enter (-1)\n", name);
+    scanf("%d", &answer);
+
+    while (answer != 1 && answer != -1) {
+        printf("Invalid number! Enter (1) to start or (-1) to end\n");
+        scanf("%d", &answer);
+    }
+
+    if (answer == -1) {
+        printf("\nYou ended the program\n");
+        return 0;
+    }
+
+    for (i = 0; i < 5; i++) {
+
+        printf("What is your number (%d)? ", i + 1);
+        scanf("%f", &numbers[i]);
+
+        while (numbers[i] > 100 || numbers[i] < 0) {
+            printf("Limit number from 0 to 100, enter again: ");
+            scanf("%f", &numbers[i]);
+        }
+
+        sum = sum + numbers[i];
+    }
+
+    max = numbers[0];
+
+    for (i = 1; i < 5; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+
+    float average = sum / 5;
+
+    printf("\nThe average for %s is %.2f\n", name, average);
+    printf("Your max number is %.2f\n", max);
+
+    return 0;
+}
