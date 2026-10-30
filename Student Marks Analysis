@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main () {
+	int number ;
+	int i ;
+	int  sum  = 0 ;
+	char name [50] ;
+	char subject [50] ;
+	printf (" what is your teacher name ");
+	scanf ("%s" , name );
+	printf (" What subject are you studying? \n ");
+	scanf ("%s" , subject );
+		printf (" hello %s , and hello %s " , name , subject );
+	printf ("\n  How many students ? \n ");
+	scanf ("%d" , &number );
+	while ( number <=0 ) {
+		 printf (" invalid number , enter again");
+		 scanf ("%d" , &number);
+	}
+		 	int  numbers  [number]  ;
+	for ( i=0 ; i < number ; i++ ) {
+   printf (" what is mark for student(%d) \n"  , i+1  ) ;
+    scanf ("%d" , &numbers [ i ] );
+    while ( numbers [i] > 100 || numbers [i] <= 0 ) {printf (" invaild number , enter again "); 
+    scanf ("%d" , &numbers[i] ) ; }
+    sum = sum + numbers [ i ] ;   
+    printf ("\n____________________________\n");
+	}
+	int max = numbers [0] ;
+	int min = numbers [0] ;
+	for (i = 1 ; i < number ; i++ ) {
+		if ( max < numbers [i] ) {
+			max = numbers [i] ;   }
+			if ( min > numbers [i] ){
+				min = numbers [i] ; }}
+			printf ( "the highest  mark is %d" , max ) ;
+			printf ("\n ____________________\n"); 
+			printf (" the lowest mark is %d " , min );
+			int average ;
+			 average = sum / number  ;
+			 int range = max-min ;
+			printf ( "\n ____________________ \n");
+			printf  ( "the average is %d " , average ) ; 
+			
+			printf ("\n ___________________\n");
+			printf (" the range  is %d \n  " , range );
+}
