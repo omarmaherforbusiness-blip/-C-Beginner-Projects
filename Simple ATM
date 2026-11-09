@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main(){
+    char first_name [50] ;
+    char second_name [50] ;
+    int balance = 5000 ;
+    const int password = 5678 ;
+    int answer , withdraw , deposit  ;
+    printf ("  \n what is your first name ? ");
+    scanf ("%s" , first_name );
+    printf (" \n what is your second name ?");
+    scanf ("%s" , second_name );
+    printf (" | hello %s %s | \n  " , first_name , second_name );
+    printf ("  \n To check balance - press (1) \n  ");
+    printf ("_________________\n ");
+    printf (" To deposit money - press (2) \n ");
+    printf ("___________________\n ");
+    printf (" To withdraw money - press (3) \n ");
+    printf ("___________________\n ");
+    printf (" To exit - press (-1) \n ");
+    scanf ("%d" , &answer);
+    if (answer == -1 ) { printf (" you ended it  \n ");
+        return 0 ;  } 
+    while ( answer != 1 &&  answer != 2 && answer != 3  ) {
+        printf (" invaild number! enter again ");
+        scanf ("%d" , &answer ); 
+        if (answer == -1 ) { printf (" you ended it  \n ");
+        return 0 ;  } }
+        printf (" Enter your password \n ");
+        scanf (" %d" , &password );
+        while ( password != 5678 ) { printf (" incorrect password, try again  \n ");
+        scanf ("%d" , &password ); 
+         }
+        if (  password == 5678 && answer == 1 ) { printf (" your balance is %d EGP  \n " , balance );}
+        if ( password == 5678 && answer == 2 ) { printf ( " How much would you like to deposit? \n ");
+        scanf (" %d " , &deposit );
+        while ( deposit <= 0 ) { printf (" invaild number " );
+        scanf (" %d" , &deposit ); }
+        printf (" Successful operation ,  your new balance is %d  \n " , deposit + balance );
+        }
+        if ( password == 5678 && answer == 3 )  { printf ("How much would you like to withdraw? \n " );
+        scanf ("%d" , &withdraw ); 
+        while ( withdraw > balance ) { printf (" Insufficient Balance  \n " );
+        scanf ("%d" , &withdraw);}
+        while ( withdraw <= 0 ) { printf (" invaild number ! ");
+        scanf ("%d" , &withdraw ); }
+        printf (" successful operation , your new balance is %d " , balance - withdraw ); }
+}
+
+
+
