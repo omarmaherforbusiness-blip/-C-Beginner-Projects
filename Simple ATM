@@ -1,10 +1,13 @@
+ 
 #include <stdio.h>
 int main(){
     char first_name [50] ;
     char second_name [50] ;
     int balance = 5000 ;
-    const int password = 5678 ;
-    int check ;
+     int password = 5678 ;
+    int check , modren , old , sure  ;
+    int rest = 5 ;
+    int attempt = 0 ;
     int answer , withdraw , deposit , menu ;
     printf ("  \n what is your first name ? ");
     scanf ("%s" , first_name );
@@ -18,20 +21,63 @@ int main(){
     printf ("___________________\n ");
     printf (" To withdraw money - press (3) \n ");
     printf ("___________________\n ");
+    printf (" To change your password - press (4) \n ");
+    printf (" ___________________\n ");
     printf (" To exit - press (-1) \n ");
     scanf ("%d" , &answer);
     if (answer == -1 ) { printf (" you ended it  \n ");
         return 0 ;  } 
-    while ( answer != 1 &&  answer != 2 && answer != 3  ) {
+    while ( answer != 1 &&  answer != 2 && answer != 3 && answer != 4 ) {
         printf (" invaild number! enter again ");
         scanf ("%d" , &answer ); 
         if (answer == -1 ) { printf (" you ended it  \n ");
         return 0 ;  } }
+        if ( answer == 4 ) { printf (" what is your old password \n ");
+        scanf ("%d"  , &old );
+        rest = 5 ;
+      attempt = 0 ;
+        while ( old != password && attempt < 6 ){ 
+        	printf (" incorrect password, try again , You have  (%d)  attempts \n " ,  rest );
+        rest -- ;
+        attempt ++ ;
+        scanf ("%d" , &old  ); 
+        if ( password != old && attempt == 5 ){ printf (" Incorrect password. You have exceeded the allowed number of attempts; please try again later. \n ");
+        return 0 ;  }  } 
+        if ( old == password ){ 
+        modren_password : 
+        printf ( " what is your new password \n ");
+        scanf ("%d" , &modren );
+        printf ( "Enter you new password again \n " ); 
+        scanf ("%d" , &sure );
+        if ( sure != modren ) {
+        	printf (" Passwords do not match. Please try again. \n "); 
+        	 goto modren_password ; } 
+        if ( sure == modren ){ printf ( "Password changed successfully - To go to the main menu press (1) - to exit press (-1) .\n "); 
+        password = modren ; }
+          scanf ("%d" , &menu );
+         if ( menu == -1 ){ 
+        printf (" you ended it  \n  ");
+        return 0 ;   }
+        while ( menu != 1 && menu != -1 ) {
+        	printf (" invaild mumber , enter again ");
+        	scanf ("%d" , &menu ); 
+        	if ( menu == -1 ) {
+        		printf ("you ended it \n ") ; } }
+        if ( menu == 1 ){ goto menu ; }  } }
         printf (" Enter your password \n ");
         scanf (" %d" ,  &check );
-        while ( password  !=  check  ) { printf (" incorrect password, try again  \n ");
+        rest = 5 ;
+        attempt = 0 ;
+        while ( password  !=  check && attempt < 6  ) 
+        {
+        printf (" incorrect password, try again , You have  (%d)  attempts \n " ,  rest );
+        rest -- ;
+        attempt ++ ;
         scanf ("%d" , &check  ); 
+        if ( password != check && attempt == 5 ){ printf (" Incorrect password. You have exceeded the allowed number of attempts; please try again later. \n ");
+        return 0 ;  }
          }
+        
         if (  password == check  && answer == 1 ) { printf (" your balance is %d EGP - To go to the main menu press (1) - to exit press (-1)  \n " , balance );
         scanf ("%d" , &menu );
         if ( menu == -1 ){ 
@@ -43,10 +89,12 @@ int main(){
         	if ( menu == -1 ) {
         		printf ("you ended it \n ") ; } }
         if ( menu == 1 ){ goto menu ; } }
+          rest = 4 ;
+     attempt = 0 ;
         if ( password == check  && answer == 2 ) { printf ( " How much would you like to deposit? \n ");
-        scanf (" %d " , &deposit );
+        scanf ("%d" , &deposit );
         while ( deposit <= 0 ) { printf (" invaild number " );
-        scanf (" %d" , &deposit ); }
+        scanf ("%d" , &deposit ); }
         balance = deposit + balance ;
         printf (" Successful operation ,  your new balance is %d  - To go to the main menu press (1) - to exit press (-1) \n " , balance  );
         scanf ("%d" , &menu );
@@ -59,12 +107,14 @@ int main(){
         	if ( menu == -1 ) {
         		printf ("you ended it \n ") ; } }
         if ( menu == 1 ){ goto menu ; }  }
+          rest = 4 ;
+        attempt = 0 ;
         if ( password == check  && answer == 3 )  { printf ("How much would you like to withdraw? \n " );
         scanf ("%d" , &withdraw ); 
-        while ( withdraw > balance ) { printf (" Insufficient Balance  \n " );
-        scanf ("%d" , &withdraw);}
-        while ( withdraw <= 0 ) { printf (" invaild number ! ");
-        scanf ("%d" , &withdraw ); }
+        while ( withdraw > balance  || withdraw <= 0 ) { if ( withdraw > balance ){printf (" Insufficient Balance , enter again  \n " );}
+        if( withdraw <= 0 ) { printf (" invaild number ! , enter again  ");}
+        scanf ("%d" , &withdraw ); 
+        }
         balance = balance - withdraw ;
         printf (" successful operation , your new balance is %d   - To go to the main menu press (1) - to exit press (-1)  " , balance ); 
         scanf ("%d" , &menu );
@@ -77,5 +127,3 @@ int main(){
         if ( menu == 1 ){ goto menu ; }
 }
 }
-
-
