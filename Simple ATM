@@ -47,6 +47,9 @@ int main(){
         modren_password : 
         printf ( " what is your new password \n ");
         scanf ("%d" , &modren );
+        while ( modren <= 0  || modren < 999 ) { if ( modren <= 0 ) {printf (" invaild number , enter again ");}
+        if ( modren <= 999  && modren > 0 ){ printf ( " The password must be a 4-digit number. "); }
+        scanf ("%d" , &modren ); }
         printf ( "Enter you new password again \n " ); 
         scanf ("%d" , &sure );
         if ( sure != modren ) {
